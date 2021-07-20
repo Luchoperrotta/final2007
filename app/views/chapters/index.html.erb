@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Chapters</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Emision</th>
+      <th>Driver</th>
+      <th>Clothing</th>
+      <th>Usuario que cargó el dato</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @chapters.where(:user => current_user).each do |chapter| %>
+      <tr>
+        <td><%= chapter.issue_id %></td>
+        <td><%= chapter.driver.full_name %></td>
+        <td><%= chapter.clothing_id %></td>
+        <td><%= chapter.user.username %></td>
+        <td><%= link_to 'Show', chapter %></td>
+        <td><%= link_to 'Edit', edit_chapter_path(chapter) %></td>
+        <td><%= link_to 'Destroy', chapter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Chapter', new_chapter_path %>
